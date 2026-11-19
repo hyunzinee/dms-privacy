@@ -27,7 +27,11 @@ DMS 졸음감지(이하 "앱", 패키지명 `io.github.hyunzinee.dms`)는 운전
 - 감시 중일 때만 사용하며(상단 알림 표시), 백그라운드 위치 권한("항상 허용")은 요청하지 않습니다.
 - 위치 권한을 거부하거나 설정에서 기능을 끄면 GPS를 사용하지 않으며, 경보는 항상 정상적으로 울립니다.
 
-## 4. 기기에 저장되는 정보
+## 4. 통화 상태
+- 목적: 휴대폰을 귀에 대고 통화하는 동안에는 카메라에 얼굴이 보이지 않으므로 경보를 멈춥니다.
+- 처리 방식: 통화 중인지와 통화 소리가 수화기·스피커·이어폰 중 어디로 나오는지만 기기 안에서 확인합니다. 전화번호, 통화 상대, 통화 내용·기록은 읽지 않으며 별도 권한도 요청하지 않습니다.
+
+## 5. 기기에 저장되는 정보
 앱 설정만 기기 내부 저장소에 보관됩니다.
 - 눈 감음 임계값, 경보 지연 시간, 카메라 화면 표시 여부
 - 설정 화면의 감지 기준(고개 숙임 각도, 하품 기준 등)과 GPS 기능 사용 여부
@@ -35,7 +39,7 @@ DMS 졸음감지(이하 "앱", 패키지명 `io.github.hyunzinee.dms`)는 운전
 
 이 값들은 얼굴 이미지가 아닌 숫자이며, 기기 밖으로 나가지 않습니다. 앱을 삭제하면 함께 삭제됩니다. 기기 백업에도 포함되지 않습니다.
 
-## 5. 권한
+## 6. 권한
 | 권한 | 용도 |
 |---|---|
 | 카메라 | 운전자 얼굴 분석 (기기 내부) |
@@ -45,19 +49,19 @@ DMS 졸음감지(이하 "앱", 패키지명 `io.github.hyunzinee.dms`)는 운전
 | 화면 꺼짐 방지(Wake lock) | 화면이 꺼져도 분석이 멈추지 않도록 유지 |
 | 진동 | 졸음 경보 |
 
-## 6. 제3자 제공
+## 7. 제3자 제공
 수집하는 정보가 없으므로 제3자에게 제공하는 정보도 없습니다. 앱에 포함된 MediaPipe 라이브러리의 사용 통계 기능은 인터넷 권한이 없어 동작하지 않습니다.
 
-## 7. 아동
+## 8. 아동
 앱은 운전자를 위한 앱이며 만 18세 미만을 대상으로 하지 않습니다.
 
-## 8. 안전 고지
+## 9. 안전 고지
 앱은 운전 보조 도구이며 졸음운전을 완전히 예방하지 못합니다. 졸음이 느껴지면 반드시 안전한 곳에서 휴식하세요. 운전 중에는 앱을 조작하지 마세요.
 
-## 9. 변경
+## 10. 변경
 방침이 바뀌면 이 페이지에 게시하고 시행일을 갱신합니다.
 
-## 10. 문의
+## 11. 문의
 hyunzinee@gmail.com
 
 ---
@@ -71,6 +75,7 @@ DMS Drowsiness Monitor ("the app", package `io.github.hyunzinee.dms`) uses the p
 - The app **does not collect or transmit any personal data**.
 - Camera frames are **analyzed on the device in real time** with Google MediaPipe Face Landmarker and discarded immediately. No photos or videos are stored, recorded, or sent.
 - Location (optional): when "pause alarms while stopped" is on, GPS speed is used on the device only to decide whether the vehicle is stopped, then discarded. Location is never stored or sent, is used only while monitoring (ongoing notification shown), and background ("allow all the time") location is not requested. Without the permission, alarms always sound.
+- Call state: during a call held to the ear (camera cannot see the face) alarms pause. The app only checks on the device whether a call is active and whether its audio goes to the earpiece, speaker or a headset. It does not read phone numbers, contacts, call content or call logs, and needs no phone permission.
 - The app has **no Internet permission**, so it cannot send data off the device. There are no ads, analytics, or accounts.
 - Only settings (alert threshold, alert delay, preview on/off) and calibration numbers (baseline eye openness, forward head angle) are stored locally. They are not images, never leave the device, are excluded from backups, and are deleted when the app is uninstalled.
 - Permissions: camera (on-device face analysis), location (optional, on-device stop detection), notifications (monitoring status and alarms), camera/location foreground service and wake lock (keep monitoring in the background / with the screen off while the ongoing notification is shown), vibration (alarm).
